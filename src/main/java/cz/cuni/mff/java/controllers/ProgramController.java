@@ -1,13 +1,16 @@
 package cz.cuni.mff.java.controllers;
 
+import cz.cuni.mff.java.coreClasses.Habit;
 import cz.cuni.mff.java.helpers.Constants;
 import cz.cuni.mff.java.helpers.FileManager;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ProgramController {
-    static public String User = "Guest";
+    public static String User = "Guest";
     public static void SelectUser(){
         ClearGuest();
         System.out.println("Enter your name");
