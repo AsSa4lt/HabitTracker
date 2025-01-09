@@ -3,6 +3,7 @@ package cz.cuni.mff.java.controllers;
 import cz.cuni.mff.java.coreClasses.Habit;
 import cz.cuni.mff.java.helpers.Constants;
 import cz.cuni.mff.java.helpers.FileManager;
+import cz.cuni.mff.java.helpers.Printer;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,8 +11,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ProgramController {
+    public enum UIState {
+        Logging,
+        MainPage,
+        HabitsList,
+        InsideHabit
+    }
     public static String User = "Guest";
+    public static UIState ProgramState = UIState.Logging;
+    public static HabitsController HabitsCtrl = new HabitsController();
     public static void SelectUser(){
+        ProgramState = UIState.Logging;
         ClearGuest();
         System.out.println("Enter your name");
         // read user
@@ -37,8 +47,17 @@ public class ProgramController {
         }while (true);
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
 
-        System.out.println("Welcome, " + User + "!");
+    public static void Run(){
+        switch (ProgramState){
+            case UIState.Logging -> SelectUser();
+            case UIState.MainPage -> Printer.PrintMainMenu();
+            case UIState.HabitsList -> Printer.PrintHabitsList(HabitsCtrl.Habits);
+            default -> System.out.print("\033[H\033[2J");
+        };
+
+
     }
 
     private static void ClearGuest(){

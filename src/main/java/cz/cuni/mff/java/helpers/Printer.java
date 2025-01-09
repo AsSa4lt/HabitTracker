@@ -5,6 +5,7 @@ import cz.cuni.mff.java.coreClasses.Habit;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import cz.cuni.mff.java.controllers.ProgramController;
 
 public class Printer {
     /**
@@ -23,8 +24,20 @@ public class Printer {
         System.out.println("Habit name:         " + habit.Name);
         System.out.println("Creation data:      " + habit.CreationDate);
         System.out.println("Target to complete: " + habit.Target);
-        for(LocalDate date: habit.CheckedDates){
-
+        System.out.println("Current streak:     " + habit.GetCurrentStreak() + "Days");
+        LocalDate currentDate = LocalDate.now();
+        if(habit.CheckedDates.contains(currentDate)){
+            System.out.println("Checked today:      " + "Yes");
+        }else {
+            System.out.println("Checked today:      " + "No");
         }
+    }
+
+    public static void PrintMainMenu(){
+        System.out.println("Welcome, " + ProgramController.User + "!");
+        System.out.println("1. Habits");
+        System.out.println("2. Log out");
+        System.out.println("3. Save data");
+        System.out.println("4. Exit");
     }
 }

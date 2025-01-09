@@ -21,10 +21,21 @@ public class Habit {
     public int Target = -1;
 
     /**
-     * Hashset of a dated when user checked habit
+     * Hashset of a dates when user checked habit
      */
     public HashSet<LocalDate> CheckedDates = new HashSet<>();
 
+    /**
+     * Basic constructor for Habit
+     * @param Name Habit name
+     * @param CreationDate Date, when habit has been created
+     * @param Target Target, when habit can be marked as done
+     */
+    public Habit(String Name, LocalDate CreationDate, int Target) {
+        this.Name = Name;
+        this.CreationDate = CreationDate;
+        this.Target = Target;
+    }
 
     public boolean AreMissedDays(){
         // get number of days between today and Creation date and compare to the size of CheckedDays
