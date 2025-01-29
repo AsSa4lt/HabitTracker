@@ -4,6 +4,7 @@ import cz.cuni.mff.java.coreClasses.Habit;
 import cz.cuni.mff.java.helpers.Constants;
 import cz.cuni.mff.java.helpers.FileManager;
 import cz.cuni.mff.java.helpers.Printer;
+import cz.cuni.mff.java.helpers.UserManager;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ public class ProgramController {
         Logging,
         MainPage,
         HabitsList,
-        InsideHabit
+        InsideHabit,
+        Exit
     }
     public static String User = "Guest";
     public static UIState ProgramState = UIState.Logging;
@@ -40,6 +42,10 @@ public class ProgramController {
             String answer = scanner.nextLine();
             if(answer.equalsIgnoreCase("y")){
                 User = userName;
+                // in this case create new user
+                UserManager.CreateNewUser(User);
+                ProgramState = UIState.MainPage;
+                break;
             }
 
             // if we are here, so user needs to try again
@@ -54,9 +60,9 @@ public class ProgramController {
             case UIState.Logging -> SelectUser();
             case UIState.MainPage -> Printer.PrintMainMenu();
             case UIState.HabitsList -> Printer.PrintHabitsList(HabitsCtrl.Habits);
+            case UIState.Exit -> System.exit(0);
             default -> System.out.print("\033[H\033[2J");
         };
-
 
     }
 

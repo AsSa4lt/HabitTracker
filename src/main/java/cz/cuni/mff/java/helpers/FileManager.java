@@ -13,6 +13,7 @@ public class FileManager {
      */
     public static void DeleteFolder(File folder){
         File[] files = folder.listFiles();
+        if (files == null) return;
         for (File file : files) {
             if (file.isDirectory()) {
                 DeleteFolder(file);
@@ -21,5 +22,9 @@ public class FileManager {
             }
         }
         folder.delete();
+    }
+
+    public static void CreateFolder(File folder){
+        if (!folder.exists()) folder.mkdir();
     }
 }
