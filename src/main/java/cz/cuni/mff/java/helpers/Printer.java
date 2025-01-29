@@ -36,8 +36,9 @@ public class Printer {
     public static void PrintMainMenu(){
         System.out.println("Welcome, " + ProgramController.User + "!");
         System.out.println("1. Habits");
-        System.out.println("2. Log out");
-        System.out.println("3. Save data");
-        System.out.println("4. Exit");
+        System.out.println("2. Create Habit");
+        System.out.println("3. Log out");
+        System.out.println("4. Save data");
+        System.out.println("5. Exit");
     }
 }

@@ -1,14 +1,11 @@
 package cz.cuni.mff.java.controllers;
 
-import cz.cuni.mff.java.coreClasses.Habit;
 import cz.cuni.mff.java.helpers.Constants;
 import cz.cuni.mff.java.helpers.FileManager;
 import cz.cuni.mff.java.helpers.Printer;
 import cz.cuni.mff.java.helpers.UserManager;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ProgramController {
@@ -17,6 +14,7 @@ public class ProgramController {
         MainPage,
         HabitsList,
         InsideHabit,
+        HabitCreation,
         Exit
     }
     public static String User = "Guest";
@@ -56,14 +54,20 @@ public class ProgramController {
     }
 
     public static void Run(){
-        switch (ProgramState){
-            case UIState.Logging -> SelectUser();
-            case UIState.MainPage -> Printer.PrintMainMenu();
-            case UIState.HabitsList -> Printer.PrintHabitsList(HabitsCtrl.Habits);
-            case UIState.Exit -> System.exit(0);
-            default -> System.out.print("\033[H\033[2J");
-        };
+        while (true) {
+            switch (ProgramState) {
+                case UIState.Logging -> SelectUser();
+                case UIState.MainPage -> Printer.PrintMainMenu();
+                case UIState.HabitsList -> Printer.PrintHabitsList(HabitsCtrl.Habits);
+                case UIState.Exit -> System.exit(0);
+                default -> System.out.print("\033[H\033[2J");
+            }
 
+            switch (ProgramState){
+                case UIState.MainPage -> ProgramState = MainMenuController.ReadUserInput();
+                case UIState.HabitCreation -> HabitsController.CreateNewHabitUser();
+            }
+        }
     }
 
     private static void ClearGuest(){

@@ -9,7 +9,7 @@ public class UserManager {
             // First we need to create a folder
             FileManager.CreateFolder(new File(Constants.UsersDirectory + "/" + Name));
             // then we need to create an empty habits.csv file
-            File file = new File(Constants.UsersDirectory + "/" + Name + "/habits.csv");
+            File file = new File(Constants.UsersDirectory + "/" + Name + "/" + Constants.HabitsFile);
             // if file exists in a folder that has been created now, something went REALLY wrong
             if(!file.createNewFile())
                 throw new IOException();

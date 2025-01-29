@@ -16,7 +16,7 @@ public class Habit {
     public LocalDate CreationDate;
     /**
      * User selected target for a habit
-     * Default value is -1, which indicated that there is no target for this habbit
+     * Default value is -1, which indicated that there is no target for this habit
      */
     public int Target = -1;
 

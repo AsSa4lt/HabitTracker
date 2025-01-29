@@ -12,15 +12,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class HabitsController {
-    public List<Habit> Habits = new ArrayList<>();
-    public Habit SelectedHabit;
+    public static List<Habit> Habits = new ArrayList<>();
+    public static Habit SelectedHabit;
     /**
      * Habits are stored in a csv file with only three parameters
      * Name, CreationData, Target
      */
-    public void ReadHabits() throws FileNotFoundException {
+    public static void ReadHabits() throws FileNotFoundException {
         Habits.clear();
-        File file = new File(Constants.UsersDirectory + "/" + ProgramController.User + "/Habits.csv");
+        File file = new File(Constants.UsersDirectory + "/" + ProgramController.User + "/" + Constants.HabitsFile);
         // this means that user don't have any habits created
         if(!file.exists()){ return; }
 
@@ -40,5 +40,32 @@ public class HabitsController {
         }
     }
 
+    public static void CreateNewHabitUser(){
+        System.out.println("Creating new habit");
+        System.out.println("Enter name for the habit");
+        Scanner scanner = new Scanner(System.in);
+        String habitName = scanner.nextLine();
+        System.out.println("Enter date for the habit");
+        LocalDate habitDate;
+        do{
+            try {
+                habitDate = LocalDate.parse(scanner.nextLine());
+                break;
+            }catch (Exception e){
+                System.out.println("Invalid date format, try again");
+            }
+        }while (true);
+        System.out.println("Enter the target for the habit(in days)");
+        int target = -1;
+        do {
+            try {
+                target = Integer.parseInt(scanner.nextLine());
+                break;
+            }catch (Exception e){
+                System.out.println("Invalid number format, try again");
+            }
+        }while (true);
+        Habits.add(new Habit(habitName, habitDate, target));
+    }
 
 }
