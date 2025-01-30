@@ -3,7 +3,6 @@ package cz.cuni.mff.java.helpers;
 import cz.cuni.mff.java.coreClasses.Habit;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import cz.cuni.mff.java.controllers.ProgramController;
 
@@ -14,7 +13,6 @@ public class Printer {
      */
     public static void PrintHabitsList(List<Habit> habits) {
         // we are going to print name, date of a creation and a target
-        // TODO: Add trailing spaces
         // Find the longest name from habits
         int longestName = -1;
         for(Habit habit: habits){
@@ -25,23 +23,19 @@ public class Printer {
 
         StringBuilder sb = new StringBuilder();
         sb.append("Name");
-        for(int i = 0; i < longestName-4; i ++){
-            sb.append(" ");
-        }
+        sb.append(" ".repeat(Math.max(0, longestName - 4)));
         sb.append(Constants.SpaceBetweenColumns).append("Date      ");
-        sb.append(Constants.SpaceBetweenColumns).append("Target");
-        System.out.println(sb.toString());
+        sb.append(Constants.SpaceBetweenColumns).append("Streak/Target");
+        System.out.println(sb);
         for(Habit habit: habits){
             StringBuilder sbHabit = new StringBuilder();
             sbHabit.append(habit.Name);
-            for(int i = 0; i < longestName-habit.Name.length(); i ++){
-                sbHabit.append(" ");
-            }
+            sbHabit.append(" ".repeat(Math.max(0, longestName - habit.Name.length())));
             sbHabit.append(Constants.SpaceBetweenColumns);
             sbHabit.append(habit.CreationDate);
             sbHabit.append(Constants.SpaceBetweenColumns);
-            sbHabit.append(habit.Target);
-            System.out.println(sbHabit.toString());
+            sbHabit.append(habit.GetCurrentStreak()).append("/").append(habit.Target);
+            System.out.println(sbHabit);
         }
     }
 
