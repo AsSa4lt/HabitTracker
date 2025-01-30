@@ -1,5 +1,6 @@
 package cz.cuni.mff.java.controllers;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -27,8 +28,11 @@ public class MainMenuController {
             }
             case "4" -> {
                 System.out.println("Saving data...");
-                /// TODO: Implement function to save all the data for the user
-                System.out.println("Saved successfully");
+                try {
+                    HabitsController.SaveHabits();
+                }catch (IOException e){
+                    System.out.println("Something went wrong");
+                }
                 return ProgramController.UIState.MainPage;
             }
             case "5" -> {
