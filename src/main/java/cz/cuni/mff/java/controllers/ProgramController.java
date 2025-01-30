@@ -6,6 +6,7 @@ import cz.cuni.mff.java.helpers.Printer;
 import cz.cuni.mff.java.helpers.UserManager;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ProgramController {
@@ -33,6 +34,7 @@ public class ProgramController {
             File userFile = new File(Constants.UsersDirectory + userName);
             if(userFile.exists()){
                 User = userName;
+                ProgramState = UIState.MainPage;
                 break;
             }
 
@@ -54,18 +56,27 @@ public class ProgramController {
     }
 
     public static void Run(){
+        try {
+            HabitsController.ReadHabits();
+        }catch (IOException e){
+            System.out.println("Error reading habits for user: " + User);
+        }
         while (true) {
             switch (ProgramState) {
                 case UIState.Logging -> SelectUser();
                 case UIState.MainPage -> Printer.PrintMainMenu();
-                case UIState.HabitsList -> Printer.PrintHabitsList(HabitsCtrl.Habits);
+                case UIState.HabitsList -> Printer.PrintHabitsList(HabitsController.Habits);
                 case UIState.Exit -> System.exit(0);
                 default -> System.out.print("\033[H\033[2J");
             }
 
             switch (ProgramState){
                 case UIState.MainPage -> ProgramState = MainMenuController.ReadUserInput();
-                case UIState.HabitCreation -> HabitsController.CreateNewHabitUser();
+                case UIState.HabitCreation -> {
+                    HabitsController.CreateNewHabitUser();
+                    ProgramState = UIState.MainPage;
+                }
+                case UIState.HabitsList -> { ProgramState = HabitsListController.ReadUserInputHabits();}
             }
         }
     }
