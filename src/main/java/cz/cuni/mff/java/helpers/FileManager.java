@@ -24,6 +24,10 @@ public class FileManager {
         folder.delete();
     }
 
+    /**
+     * Creates folder if it doesn't exist
+     * @param folder that is created
+     */
     public static void CreateFolder(File folder){
         if (!folder.exists()) folder.mkdir();
     }

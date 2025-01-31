@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import java.util.List;
 import cz.cuni.mff.java.controllers.ProgramController;
 
+/**
+ * Class that takes care of printing different stuf
+ */
 public class Printer {
     /**
      * Function that takes care of printing habits
@@ -28,6 +31,7 @@ public class Printer {
         sb.append(Constants.SpaceBetweenColumns).append("Date      ");
         sb.append(Constants.SpaceBetweenColumns).append("Streak/Target");
         System.out.println(sb);
+        // iterate through habits
         for(Habit habit: habits){
             StringBuilder sbHabit = new StringBuilder();
             sbHabit.append(habit.Name);
@@ -40,6 +44,10 @@ public class Printer {
         }
     }
 
+    /**
+     * Function that takes care of printing pretty description of a habit
+     * @param habit that is going to be printed
+     */
     public static void PrintHabitDescription(Habit habit) {
         System.out.println("Habit name:         " + habit.Name);
         System.out.println("Creation data:      " + habit.CreationDate);
@@ -57,6 +65,9 @@ public class Printer {
         System.out.println("4. Exit");
     }
 
+    /**
+     * Function that prints the main menu
+     */
     public static void PrintMainMenu(){
         System.out.println("Welcome, " + ProgramController.User + "!");
         System.out.println("1. Habits");

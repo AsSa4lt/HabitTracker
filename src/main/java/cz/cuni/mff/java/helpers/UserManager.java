@@ -3,7 +3,14 @@ package cz.cuni.mff.java.helpers;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Function that takes care of actions with users
+ */
 public class UserManager {
+    /**
+     * Function that creates necessary files for a use
+     * @param Name of a user to create specific files
+     */
     public static void CreateNewUser(String Name){
         try {
             // First we need to create a folder

@@ -9,7 +9,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Main class that provides functions to run program
+ */
 public class ProgramController {
+    /**
+     * Enum to specify a program state right now
+     */
     public enum UIState {
         Logging,
         MainPage,
@@ -18,9 +24,20 @@ public class ProgramController {
         HabitCreation,
         Exit
     }
+
+    /**
+     * Name of a current User
+     */
     public static String User = "Guest";
+
+    /**
+     * Current state of the program, we always start with logging
+     */
     public static UIState ProgramState = UIState.Logging;
-    public static HabitsController HabitsCtrl = new HabitsController();
+
+    /**
+     * Start of the program, function that provides logging
+     */
     public static void SelectUser(){
         ProgramState = UIState.Logging;
         ClearGuest();
@@ -55,6 +72,9 @@ public class ProgramController {
         System.out.flush();
     }
 
+    /**
+     * Main program loop
+     */
     public static void Run(){
         try {
             HabitsController.ReadHabits();
@@ -83,6 +103,9 @@ public class ProgramController {
         }
     }
 
+    /**
+     * Deleted all guest files
+     */
     private static void ClearGuest(){
         // look for folder "Guest", if found - delete everything in a folder, if no folder - create it
         File guestFolder = new File(Constants.UsersDirectory + "Guest");

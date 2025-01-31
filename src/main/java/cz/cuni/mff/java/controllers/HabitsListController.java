@@ -41,6 +41,10 @@ public class HabitsListController {
         }while (true);
     }
 
+    /**
+     * Reads operations to be done with the habit
+     * @return Next state of the program loop
+     */
     public static ProgramController.UIState ReadUserInputInsideHabit(){
         Scanner scanner = new Scanner(System.in);
         do {

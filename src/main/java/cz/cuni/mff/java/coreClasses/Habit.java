@@ -3,6 +3,9 @@ package cz.cuni.mff.java.coreClasses;
 import java.time.LocalDate;
 import java.util.HashSet;
 
+/**
+ * Class that stores data about the habit from files
+ */
 public class Habit {
 
     /**
@@ -36,16 +39,11 @@ public class Habit {
         this.Target = Target;
     }
 
-    public boolean AreMissedDays(){
-        // get number of days between today and Creation date and compare to the size of CheckedDays
-        for(LocalDate date = CreationDate; date.isBefore(LocalDate.now().minusDays(1)); date.plusDays(1)){
-            if(!CheckedDates.contains(date)){
-                return false;
-            }
-        }
-        return true;
-    }
 
+    /**
+     * Function that goes through checked days and looks for a streak
+     * @return Returns current streak
+     */
     public int GetCurrentStreak(){
         int currentStreak = 0;
         for(LocalDate date = CreationDate; date.isBefore(LocalDate.now().plusDays(1)); date = date.plusDays(1)){
