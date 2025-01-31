@@ -1,7 +1,6 @@
 package cz.cuni.mff.java.coreClasses;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.HashSet;
 
 public class Habit {
@@ -49,7 +48,7 @@ public class Habit {
 
     public int GetCurrentStreak(){
         int currentStreak = 0;
-        for(LocalDate date = CreationDate; date.isBefore(LocalDate.now().minusDays(1)); date.plusDays(1)){
+        for(LocalDate date = CreationDate; date.isBefore(LocalDate.now().plusDays(1)); date = date.plusDays(1)){
             if(!CheckedDates.contains(date)){
                 currentStreak = 0;
             }else {

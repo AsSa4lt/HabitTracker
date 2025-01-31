@@ -67,6 +67,7 @@ public class ProgramController {
                 case UIState.MainPage -> Printer.PrintMainMenu();
                 case UIState.HabitsList -> Printer.PrintHabitsList(HabitsController.Habits);
                 case UIState.Exit -> System.exit(0);
+                case UIState.InsideHabit -> Printer.PrintHabitDescription(HabitsController.SelectedHabit);
                 default -> System.out.print("\033[H\033[2J");
             }
 
@@ -77,6 +78,7 @@ public class ProgramController {
                     ProgramState = UIState.MainPage;
                 }
                 case UIState.HabitsList -> { ProgramState = HabitsListController.ReadUserInputHabits();}
+                case UIState.InsideHabit -> { ProgramState = HabitsListController.ReadUserInputInsideHabit(); }
             }
         }
     }

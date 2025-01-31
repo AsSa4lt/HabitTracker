@@ -9,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -66,7 +65,7 @@ public class HabitsController {
         String habitName = scanner.nextLine();
         LocalDate habitDate = LocalDate.now();
         System.out.println("Enter the target for the habit(in days)");
-        int target = -1;
+        int target;
         do {
             try {
                 target = Integer.parseInt(scanner.nextLine());
@@ -110,6 +109,7 @@ public class HabitsController {
             for (LocalDate date : habit.CheckedDates){
                 writer.write(date.toString() + ",");
             }
+            writer.close();
         }
     }
 

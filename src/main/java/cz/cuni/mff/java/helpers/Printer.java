@@ -14,6 +14,7 @@ public class Printer {
     public static void PrintHabitsList(List<Habit> habits) {
         // we are going to print name, date of a creation and a target
         // Find the longest name from habits
+        System.out.println("Write a number of habit, menu or exit");
         int longestName = -1;
         for(Habit habit: habits){
             if(habit.Name.length() > longestName){
@@ -43,13 +44,17 @@ public class Printer {
         System.out.println("Habit name:         " + habit.Name);
         System.out.println("Creation data:      " + habit.CreationDate);
         System.out.println("Target to complete: " + habit.Target);
-        System.out.println("Current streak:     " + habit.GetCurrentStreak() + "Days");
+        System.out.println("Current streak:     " + habit.GetCurrentStreak() + " Days");
         LocalDate currentDate = LocalDate.now();
         if(habit.CheckedDates.contains(currentDate)){
             System.out.println("Checked today:      " + "Yes");
         }else {
             System.out.println("Checked today:      " + "No");
         }
+        System.out.println("1. Check today");
+        System.out.println("2. Delete habit");
+        System.out.println("3. Habits list");
+        System.out.println("4. Exit");
     }
 
     public static void PrintMainMenu(){
