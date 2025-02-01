@@ -88,7 +88,7 @@ public class ProgramController {
             switch (ProgramState) {
                 case UIState.Logging -> SelectUser();
                 case UIState.MainPage -> Printer.PrintMainMenu();
-                case UIState.HabitsList -> Printer.PrintHabitsList(HabitsController.Habits);
+                case UIState.HabitsList -> Printer.PrintListHabitsWrapperForMenuController(HabitsController.Habits);
                 case UIState.Exit -> System.exit(0);
                 case UIState.InsideHabit -> Printer.PrintHabitDescription(HabitsController.SelectedHabit);
                 case UIState.FilteringHabits -> Printer.PrintFilterMenu();

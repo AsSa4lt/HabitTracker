@@ -7,9 +7,20 @@ import java.util.List;
 import cz.cuni.mff.java.controllers.ProgramController;
 
 /**
- * Class that takes care of printing different stuf
+ * Class that takes care of printing different stuff
  */
 public class Printer {
+
+    /**
+     * Wrapper that is needed to have difference
+     * between printing habits in filer
+     * and from HabitsController
+     * @param habits habits that we need to print
+     */
+    public static void PrintListHabitsWrapperForMenuController(List<Habit> habits) {
+        System.out.println("Input is a number of a habit, menu, or exit");
+        PrintHabitsList(habits);
+    }
     /**
      * Function that takes care of printing habits
      * @param habits List of habits to be printed
@@ -81,6 +92,9 @@ public class Printer {
         System.out.println("5. Exit");
     }
 
+    /**
+     * Function that prints data for filter menu controller
+     */
     public static void PrintFilterMenu(){
         System.out.println("Select command");
 
