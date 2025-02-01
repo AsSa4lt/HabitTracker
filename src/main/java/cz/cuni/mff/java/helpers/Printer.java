@@ -15,9 +15,13 @@ public class Printer {
      * @param habits List of habits to be printed
      */
     public static void PrintHabitsList(List<Habit> habits) {
+        if (habits.isEmpty()) {
+            System.out.println("No habits found");
+            return;
+        }
+
         // we are going to print name, date of a creation and a target
         // Find the longest name from habits
-        System.out.println("Write a number of habit, menu or exit");
         int longestName = -1;
         for(Habit habit: habits){
             if(habit.Name.length() > longestName){
@@ -75,5 +79,20 @@ public class Printer {
         System.out.println("3. Log out");
         System.out.println("4. Save data");
         System.out.println("5. Exit");
+    }
+
+    public static void PrintFilterMenu(){
+        System.out.println("Select command");
+
+        System.out.println("1. Find by a creation date");
+        System.out.println("2. Find habits that were created before the provided date");
+        System.out.println("3. Find habits that were created after the provided date");
+        System.out.println("4. Find habits which name contains provided string");
+        System.out.println("5. Find habits that have target that is bigger or equals to the provided target");
+        System.out.println("6. Find habits that have target that is smaller or equals to the provided target");
+        System.out.println("7. Find habits that have streak that is bigger or equals to the provided target");
+        System.out.println("8. Find habits that have streak that is smaller or equals to the provided target");
+        System.out.println("9. Back to main menu");
+        System.out.println("10. Exit");
     }
 }

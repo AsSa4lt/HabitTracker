@@ -22,7 +22,8 @@ public class ProgramController {
         HabitsList,
         InsideHabit,
         HabitCreation,
-        Exit
+        Exit,
+        FilteringHabits,
     }
 
     /**
@@ -88,6 +89,7 @@ public class ProgramController {
                 case UIState.HabitsList -> Printer.PrintHabitsList(HabitsController.Habits);
                 case UIState.Exit -> System.exit(0);
                 case UIState.InsideHabit -> Printer.PrintHabitDescription(HabitsController.SelectedHabit);
+                case UIState.FilteringHabits -> Printer.PrintFilterMenu();
                 default -> System.out.print("\033[H\033[2J");
             }
 
@@ -99,6 +101,7 @@ public class ProgramController {
                 }
                 case UIState.HabitsList -> { ProgramState = HabitsListController.ReadUserInputHabits();}
                 case UIState.InsideHabit -> { ProgramState = HabitsListController.ReadUserInputInsideHabit(); }
+                case UIState.FilteringHabits -> { ProgramState = FilterController.ReadUserInput(); }
             }
         }
     }
