@@ -15,18 +15,51 @@ import java.util.Scanner;
  */
 public class ProgramController {
     /**
-     * Enum to specify a program state right now
+     * Represents the different states of the program's user interface.
      */
     public enum UIState {
+
+        /**
+         * The user is logging in.
+         */
         Logging,
+
+        /**
+         * The user is on the main page.
+         */
         MainPage,
+
+        /**
+         * The user is viewing the list of habits.
+         */
         HabitsList,
+
+        /**
+         * The user is inside a specific habit.
+         */
         InsideHabit,
+
+        /**
+         * The user is creating a new habit.
+         */
         HabitCreation,
+
+        /**
+         * The program is exiting.
+         */
         Exit,
+
+        /**
+         * The user is filtering habits.
+         */
         FilteringHabits,
+
+        /**
+         * The user is using a roulette feature for habits.
+         */
         RouletteForHabits
     }
+
 
     /**
      * Name of a current User
@@ -86,10 +119,18 @@ public class ProgramController {
         }catch (IOException e){
             System.out.println("Error reading habits for user: " + User);
         }
+        boolean previousRuleutte = false;
         while (true) {
             PrintProgram();
+            if(ProgramState == UIState.RouletteForHabits)
+                previousRuleutte = true;
+            else
+                previousRuleutte = false;
 
             ReadInputFromController();
+
+            if (ProgramState != UIState.FilteringHabits && !previousRuleutte)
+                System.out.print("\033[H\033[2J");
         }
     }
 
