@@ -21,16 +21,22 @@ public class Roulette {
      */
     public static ProgramController.UIState PlayRoulette(){
         System.out.println("If you want to stop now, write STOP");
+        System.out.println("If you want to just to test it, write TEST");
+        System.out.println("It's just going to simulate game without any consequences");
         Scanner scanner = new Scanner(System.in);
 
-
+        boolean safeMode = false;
         // Give a last change to a user to stop
         do {
             if(scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 if(line.equals("STOP")){
                     return ProgramController.UIState.MainPage;
-                }else {
+                } else if (line.equals("TEST")) {
+                    System.out.println("You are in a safe mode");
+                    safeMode = true;
+                    break;
+                } else {
                     System.out.println("You are gambling now");
                     break;
                 }
@@ -46,7 +52,10 @@ public class Roulette {
                 // if step is divisible by two, it's your step
                 boolean youLost = revolver.Shot();
                 if(youLost){
-                    UserLost();
+                    if(!safeMode)
+                        UserLost();
+                    else
+                        System.out.println("You lost, but it's a safe mode");
                     return ProgramController.UIState.Logging;
                 }else {
                     System.out.println("You survived, nice");
@@ -54,8 +63,13 @@ public class Roulette {
             }else {
                 boolean youWon = revolver.Shot();
                 if(youWon){
-                    System.out.println("You won, cheater");
-                    Cheat();
+                    if(!safeMode) {
+                        System.out.println("You won, cheater");
+                        Cheat();
+                    }else {
+                        System.out.println("You won, but it's a safe mode");
+                        System.out.println("No risc - no reward");
+                    }
                     return ProgramController.UIState.MainPage;
                 }else {
                     System.out.println("Computer has survived");

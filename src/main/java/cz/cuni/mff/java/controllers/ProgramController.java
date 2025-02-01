@@ -87,28 +87,45 @@ public class ProgramController {
             System.out.println("Error reading habits for user: " + User);
         }
         while (true) {
-            switch (ProgramState) {
-                case UIState.Logging -> SelectUser();
-                case UIState.MainPage -> Printer.PrintMainMenu();
-                case UIState.HabitsList -> Printer.PrintListHabitsWrapperForMenuController(HabitsController.Habits);
-                case UIState.Exit -> System.exit(0);
-                case UIState.InsideHabit -> Printer.PrintHabitDescription(HabitsController.SelectedHabit);
-                case UIState.FilteringHabits -> Printer.PrintFilterMenu();
-                case UIState.RouletteForHabits -> Printer.PrintRouletteRules();
-                default -> System.out.print("\033[H\033[2J");
-            }
+            PrintProgram();
 
-            switch (ProgramState){
-                case UIState.MainPage -> ProgramState = MainMenuController.ReadUserInput();
-                case UIState.HabitCreation -> {
-                    HabitsController.CreateNewHabitUser();
-                    ProgramState = UIState.MainPage;
-                }
-                case UIState.HabitsList -> { ProgramState = HabitsListController.ReadUserInputHabits();}
-                case UIState.InsideHabit -> { ProgramState = HabitsListController.ReadUserInputInsideHabit(); }
-                case UIState.FilteringHabits -> { ProgramState = FilterController.ReadUserInput(); }
-                case UIState.RouletteForHabits -> { ProgramState = Roulette.PlayRoulette();}
+            ReadInputFromController();
+        }
+    }
+
+    /**
+     * Function that prints what you can do right now
+     * All calls are dont in Printer
+     */
+    private static void PrintProgram(){
+        switch (ProgramState) {
+            case UIState.Logging -> SelectUser();
+            case UIState.MainPage -> Printer.PrintMainMenu();
+            case UIState.HabitsList -> Printer.PrintListHabitsWrapperForMenuController(HabitsController.Habits);
+            case UIState.Exit -> System.exit(0);
+            case UIState.InsideHabit -> Printer.PrintHabitDescription(HabitsController.SelectedHabit);
+            case UIState.FilteringHabits -> Printer.PrintFilterMenu();
+            case UIState.RouletteForHabits -> Printer.PrintRouletteRules();
+            default -> System.out.print("\033[H\033[2J");
+        }
+    }
+
+    /**
+     * For each possible programState
+     * It calls a controller that need to read user input
+     * And provides a new state for a program
+     */
+    private static void ReadInputFromController(){
+        switch (ProgramState){
+            case UIState.MainPage -> ProgramState = MainMenuController.ReadUserInput();
+            case UIState.HabitCreation -> {
+                HabitsController.CreateNewHabitUser();
+                ProgramState = UIState.MainPage;
             }
+            case UIState.HabitsList -> { ProgramState = HabitsListController.ReadUserInputHabits();}
+            case UIState.InsideHabit -> { ProgramState = HabitsListController.ReadUserInputInsideHabit(); }
+            case UIState.FilteringHabits -> { ProgramState = FilterController.ReadUserInput(); }
+            case UIState.RouletteForHabits -> { ProgramState = Roulette.PlayRoulette();}
         }
     }
 
