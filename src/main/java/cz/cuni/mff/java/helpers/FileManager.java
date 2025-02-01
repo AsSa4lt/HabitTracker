@@ -14,10 +14,14 @@ public class FileManager {
     public static void DeleteFolder(File folder){
         File[] files = folder.listFiles();
         if (files == null) return;
+        // we are calling this function recursive to delete all files inside
         for (File file : files) {
+            // if some files, call again
             if (file.isDirectory()) {
                 DeleteFolder(file);
-            }else{
+            }
+            // in no files, just delete this file
+            else{
                 file.delete();
             }
         }

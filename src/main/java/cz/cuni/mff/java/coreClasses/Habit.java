@@ -56,6 +56,29 @@ public class Habit {
         return currentStreak;
     }
 
+
+    /**
+     * Method that provides interface to check today
+     */
+    public void CheckToday(){
+        LocalDate today = LocalDate.now();
+        CheckedDates.add(today);
+    }
+
+    /**
+     * Makes habit completed, method for roulette
+     * Made exclusively for roulette class
+     */
+    public void CheatOnHabit(){
+        CreationDate = LocalDate.now().minusDays(Target + 10);
+        for(LocalDate date = CreationDate; date.isBefore(LocalDate.now()); date = date.plusDays(1)){
+            if(!CheckedDates.contains(date)){
+                CheckedDates.add(date);
+            }
+        }
+        CheckToday();
+    }
+
     /**
      * Method with simple printing of a habit
      * @return String with a short description of a habit

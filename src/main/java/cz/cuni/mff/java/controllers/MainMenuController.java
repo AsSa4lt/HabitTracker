@@ -20,13 +20,18 @@ public class MainMenuController {
             case "1" -> {
                 return ProgramController.UIState.HabitsList;
             }
-            case "2" -> {
-                return ProgramController.UIState.HabitCreation;
+            case "2" ->{
+                return ProgramController.UIState.FilteringHabits;
             }
             case "3" -> {
+                return ProgramController.UIState.HabitCreation;
+            }case "4" -> {
+                return ProgramController.UIState.RouletteForHabits;
+            }
+            case "5" -> {
                 return ProgramController.UIState.Logging;
             }
-            case "4" -> {
+            case "6" -> {
                 System.out.println("Saving data...");
                 try {
                     HabitsController.SaveHabits();
@@ -35,11 +40,12 @@ public class MainMenuController {
                 }
                 return ProgramController.UIState.MainPage;
             }
-            case "5" -> {
+            case "7" -> {
                 ProgramController.ClearGuest();
                 return ProgramController.UIState.Exit;
             }
             default -> {
+                // in case of any invalid input, we should print everything one more time
                 System.out.println("Invalid input");
                 return ProgramController.UIState.MainPage;
             }

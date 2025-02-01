@@ -86,10 +86,12 @@ public class Printer {
     public static void PrintMainMenu(){
         System.out.println("Welcome, " + ProgramController.User + "!");
         System.out.println("1. Habits");
-        System.out.println("2. Create Habit");
-        System.out.println("3. Log out");
-        System.out.println("4. Save data");
-        System.out.println("5. Exit");
+        System.out.println("2. Filter habits");
+        System.out.println("3. Create Habit");
+        System.out.println("4. Try your luck(Not recommended)");
+        System.out.println("5. Log out");
+        System.out.println("6. Save data");
+        System.out.println("7. Exit");
     }
 
     /**
@@ -108,5 +110,15 @@ public class Printer {
         System.out.println("8. Find habits that have streak that is smaller or equals to the provided target");
         System.out.println("9. Back to main menu");
         System.out.println("10. Exit");
+    }
+
+    /**
+     * Function to print rules of the roulette
+     */
+    public static void PrintRouletteRules(){
+        System.out.println("Rules are simple");
+        System.out.println("Both you and computer make a shot in a roulette");
+        System.out.println("If you win, you get all your habits completed");
+        System.out.println("If you loose, computer deleted all your user files");
     }
 }
