@@ -28,8 +28,10 @@ public class FilterController {
                 continue;
             }
 
-            if(input.equals("exit"))
+            if(input.equals("exit")) {
+                ProgramController.ClearGuest();
                 System.exit(0);
+            }
 
             // now we need to parse command to an int
             try {
@@ -41,8 +43,10 @@ public class FilterController {
 
                 if(command == 9)
                     return ProgramController.UIState.MainPage;
-                else if(command == 10)
+                else if(command == 10) {
                     System.exit(0);
+                    ProgramController.ClearGuest();
+                }
                 else if(command == 1)
                     UserByACreationDate();
                 else if(command == 2)

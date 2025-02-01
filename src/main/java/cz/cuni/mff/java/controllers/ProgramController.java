@@ -75,6 +75,8 @@ public class ProgramController {
 
     /**
      * Main program loop
+     * First we always print current menu
+     * And only then we read input from the user in some static func in controller
      */
     public static void Run(){
         try {
@@ -108,8 +110,9 @@ public class ProgramController {
 
     /**
      * Deleted all guest files
+     * Guest files shouldn't be left after exiting the program
      */
-    private static void ClearGuest(){
+    public static void ClearGuest(){
         // look for folder "Guest", if found - delete everything in a folder, if no folder - create it
         File guestFolder = new File(Constants.UsersDirectory + "Guest");
         FileManager.DeleteFolder(guestFolder);

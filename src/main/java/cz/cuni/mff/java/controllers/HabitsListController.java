@@ -21,6 +21,7 @@ public class HabitsListController {
             else continue;
 
             if (operation.equals("exit")){
+                ProgramController.ClearGuest();
                 System.exit(0);
             }else if(operation.equals("menu") || operation.equals("main page")){
                 return ProgramController.UIState.MainPage;
@@ -54,6 +55,7 @@ public class HabitsListController {
             else continue;
 
             if (operation.equals("exit")){
+                ProgramController.ClearGuest();
                 System.exit(0);
             }else{
                 try {

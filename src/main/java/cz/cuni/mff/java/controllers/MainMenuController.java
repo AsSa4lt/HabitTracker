@@ -36,6 +36,7 @@ public class MainMenuController {
                 return ProgramController.UIState.MainPage;
             }
             case "5" -> {
+                ProgramController.ClearGuest();
                 return ProgramController.UIState.Exit;
             }
             default -> {
