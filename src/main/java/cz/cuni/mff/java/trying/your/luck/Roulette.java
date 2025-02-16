@@ -96,7 +96,7 @@ public class Roulette {
             System.out.println(i);
         }
         // all your user files are going to be deleted
-        File folder = new File(Constants.UsersDirectory + "/" + ProgramController.User);
+        File folder = new File(Constants.UsersDirectory + File.separator + ProgramController.User);
         FileManager.DeleteFolder(folder);
         System.out.println("All your files have been deleted, you should just complete your habits");
     }

@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class HabitsControllerTest {
     private final String testUserDirectory = "testUserDir";
-    private final String habitsFilePath = testUserDirectory + "/habits.csv";
+    private final String habitsFilePath = testUserDirectory + File.separator + "habits.csv";
 
     @BeforeEach
     void setUp() throws IOException {

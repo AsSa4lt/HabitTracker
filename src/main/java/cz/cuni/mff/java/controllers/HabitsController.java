@@ -2,6 +2,7 @@ package cz.cuni.mff.java.controllers;
 
 import cz.cuni.mff.java.coreClasses.Habit;
 import cz.cuni.mff.java.helpers.Constants;
+import cz.cuni.mff.java.helpers.FileManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,7 +25,7 @@ public class HabitsController {
      */
     public static void ReadHabits() throws FileNotFoundException {
         Habits.clear();
-        File file = new File(Constants.UsersDirectory + "/" + ProgramController.User + "/" + Constants.HabitsFile);
+        File file = new File(Constants.UsersDirectory + File.separator + ProgramController.User + File.separator + Constants.HabitsFile);
         // this means that user don't have any habits created
         if(!file.exists()){ return; }
 
@@ -38,7 +39,7 @@ public class HabitsController {
                 }
                 Habit habit = new Habit(split[0], LocalDate.parse(split[1]),Integer.parseInt(split[2]));
                 // Now read data about the habit from the .txt file
-                File habitFile = new File(Constants.UsersDirectory + "/" + ProgramController.User + "/" + habit.Name + ".txt");
+                File habitFile = new File(Constants.UsersDirectory + File.separator + ProgramController.User + File.separator + habit.Name + ".txt");
                 Scanner scannerHabit = new Scanner(habitFile);
                 if (scannerHabit.hasNextLine()) {
                     String data = scannerHabit.nextLine();
@@ -88,7 +89,7 @@ public class HabitsController {
      * Name, CreationData, Target
      */
     public static void SaveHabits() throws IOException {
-        File file = new File(Constants.UsersDirectory + "/" + ProgramController.User + "/" + Constants.HabitsFile);
+        File file = new File(Constants.UsersDirectory + File.separator+ ProgramController.User + File.separator + Constants.HabitsFile);
         if (!file.exists()){
            System.out.println("Something went wrong. Creating new habit.csv");
         }
@@ -103,7 +104,7 @@ public class HabitsController {
         // now we can write each habit data
         for(Habit habit : Habits){
             // get a path for a txt for a habit
-            File fileHabit = new File(Constants.UsersDirectory + "/" + ProgramController.User + "/" + habit.Name + ".txt");
+            File fileHabit = new File(Constants.UsersDirectory + File.separator+ ProgramController.User + File.separator + habit.Name + ".txt");
             writer = new FileWriter(fileHabit);
             // write data for the habit in this file
             for (LocalDate date : habit.CheckedDates){
